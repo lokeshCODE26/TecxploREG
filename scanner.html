@@ -11,7 +11,7 @@
   <div id="reader" style="width:300px;"></div>
   <script>
     function onScanSuccess(decodedText) {
-      fetch("YOUR_SCANNER_ENDPOINT", {
+      fetch("https://script.google.com/macros/s/AKfycbxyjn1NK3xQZElFNYQnOoBmxKkDekCkC6ulYNMzhBnen1AmK-oMc5HowZu5QgauLfQ74g/exec", {
         method: "POST",
         body: JSON.stringify({ id: decodedText, event: "event1" }),
         headers: { "Content-Type": "application/json" },
