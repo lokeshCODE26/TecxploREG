@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, select { display: block; margin: 10px 0; padding: 8px; width: 100%; max-width: 400px; }
+    button { padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h2>Register for the Event</h2>
+  <form id="regForm">
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="text" name="college" placeholder="College Name" required />
+    <input type="text" name="year" placeholder="Year of Study" required />
+    <input type="text" name="department" placeholder="Department" required />
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("regForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const response = await fetch("YOUR_SCRIPT_WEB_APP_URL", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+      const result = await response.text();
+      alert(result);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
