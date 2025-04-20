@@ -27,14 +27,19 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form));
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx963ZI8Kah3828GBH5gEpGnBHG9eXYnzkGD8ihBf8zz3J3b93CoNtg0wq-IXiVQiKodA/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
-      const result = await response.text();
-      alert(result);
-      form.reset();
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbx963ZI8Kah3828GBH5gEpGnBHG9eXYnzkGD8ihBf8zz3J3b93CoNtg0wq-IXiVQiKodA/exec", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" },
+        });
+        const result = await response.text();
+        alert(result);
+        form.reset();
+      } catch (error) {
+        alert("Error submitting form. Please try again later.");
+        console.error(error);
+      }
     });
   </script>
 </body>
